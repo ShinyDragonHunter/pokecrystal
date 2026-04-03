@@ -649,6 +649,12 @@ Function11636e:
 	ld [wc30d], a
 	ret
 
+LoadSpritesGFX:
+	farcall LoadUsedSpritesGFX
+	pop af
+	ld [wSpriteFlags], a
+	ret
+
 Function1163c0:
 	ldh a, [rWBK]
 	push af
@@ -659,7 +665,12 @@ Function1163c0:
 	ld bc, 16 * OBJ_SIZE
 	call ByteFill
 	call DelayFrame
-	farcall LoadStandingSpritesGFX
+	ld hl, wSpriteFlags
+	ld a, [hl]
+	push af
+	res SPRITES_SKIP_STANDING_GFX_F, [hl]
+	set SPRITES_SKIP_WALKING_GFX_F, [hl]
+	call LoadSpritesGFX
 	ld b, SCGB_MAPPALS
 	call GetSGBLayout
 	ldh a, [rWBK]
@@ -677,7 +688,12 @@ Function1163c0:
 	ld a, $90
 	ldh [hWY], a
 	call UpdateSprites
-	farcall LoadWalkingSpritesGFX
+	ld hl, wSpriteFlags
+	ld a, [hl]
+	push af
+	set SPRITES_SKIP_STANDING_GFX_F, [hl]
+	res SPRITES_SKIP_WALKING_GFX_F, [hl]
+	call LoadSpritesGFX
 	pop af
 	ldh [rWBK], a
 	farcall HDMATransferTilemapAndAttrmap_Overworld

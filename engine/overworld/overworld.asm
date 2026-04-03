@@ -1,57 +1,3 @@
-GetEmote2bpp:
-	ld a, $1
-	ldh [rVBK], a
-	call Get2bpp
-	xor a
-	ldh [rVBK], a
-	ret
-
-_UpdatePlayerSprite::
-	call GetPlayerSprite
-	ld a, [wUsedSprites]
-	ldh [hUsedSpriteIndex], a
-	ld a, [wUsedSprites + 1]
-	ldh [hUsedSpriteTile], a
-	call GetUsedSprite
-	ret
-
-LoadStandingSpritesGFX: ; mobile
-	ld hl, wSpriteFlags
-	ld a, [hl]
-	push af
-	res SPRITES_SKIP_STANDING_GFX_F, [hl]
-	set SPRITES_SKIP_WALKING_GFX_F, [hl]
-	call LoadUsedSpritesGFX
-	pop af
-	ld [wSpriteFlags], a
-	ret
-
-LoadWalkingSpritesGFX: ; mobile
-	ld hl, wSpriteFlags
-	ld a, [hl]
-	push af
-	set SPRITES_SKIP_STANDING_GFX_F, [hl]
-	res SPRITES_SKIP_WALKING_GFX_F, [hl]
-	call LoadUsedSpritesGFX
-	pop af
-	ld [wSpriteFlags], a
-	ret
-
-RefreshSprites::
-	call .Refresh
-	call LoadUsedSpritesGFX
-	ret
-
-.Refresh:
-	xor a
-	ld bc, wUsedSpritesEnd - wUsedSprites
-	ld hl, wUsedSprites
-	call ByteFill
-	call GetPlayerSprite
-	call AddMapSprites
-	call LoadAndSortSprites
-	ret
-
 GetPlayerSprite:
 ; Get Chris or Kris's sprite.
 	ld hl, ChrisStateSprites
@@ -94,13 +40,7 @@ INCLUDE "data/sprites/player_sprites.asm"
 AddMapSprites:
 	call GetMapEnvironment
 	call CheckOutdoorMap
-	jr z, .outdoor
-	call AddIndoorSprites
-	ret
-
-.outdoor
-	call AddOutdoorSprites
-	ret
+	jr z, AddOutdoorSprites
 
 AddIndoorSprites:
 	ld hl, wMap1ObjectSprite
@@ -136,35 +76,6 @@ AddOutdoorSprites:
 	pop bc
 	dec c
 	jr nz, .loop
-	ret
-
-LoadUsedSpritesGFX:
-	ld a, MAPCALLBACK_SPRITES
-	call RunMapCallback
-	call GetUsedSprites
-	call LoadMiscTiles
-	ret
-
-LoadMiscTiles:
-	ld a, [wSpriteFlags]
-	bit SPRITES_SKIP_WALKING_GFX_F, a
-	ret nz
-
-	ld c, EMOTE_SHADOW
-	farcall LoadEmote
-	call GetMapEnvironment
-	call CheckOutdoorMap
-	ld c, EMOTE_GRASS_RUSTLE
-	jr z, .outdoor
-	ld c, EMOTE_BOULDER_DUST
-.outdoor
-	farcall LoadEmote
-	ret
-
-SafeGetSprite:
-	push hl
-	call GetSprite
-	pop hl
 	ret
 
 GetSprite:
@@ -301,12 +212,6 @@ _GetSpritePalette::
 	ld c, a
 	ret
 
-LoadAndSortSprites:
-	call LoadSpriteGFX
-	call SortUsedSprites
-	call ArrangeUsedSprites
-	ret
-
 AddSpriteGFX:
 ; Add any new sprite ids to a list of graphics to be loaded.
 ; Return carry if the list is full.
@@ -332,19 +237,21 @@ AddSpriteGFX:
 	scf
 	ret
 
+.new
+	ld [hl], b
 .exists
 	pop bc
 	pop hl
 	and a
 	ret
 
-.new
-	ld [hl], b
-	pop bc
-	pop hl
-	and a
-	ret
-
+RefreshSprites::
+	xor a
+	ld bc, wUsedSpritesEnd - wUsedSprites
+	ld hl, wUsedSprites
+	call ByteFill
+	call GetPlayerSprite
+	call AddMapSprites
 LoadSpriteGFX:
 ; BUG: LoadSpriteGFX does not limit the capacity of UsedSprites (see docs/bugs_and_glitches.md)
 
@@ -355,19 +262,15 @@ LoadSpriteGFX:
 	and a
 	jr z, .done
 	push hl
-	call .LoadSprite
+	call GetSprite
+	ld a, l
 	pop hl
 	ld [hli], a
 	dec b
 	jr nz, .loop
 
 .done
-	ret
-
-.LoadSprite:
-	call GetSprite
-	ld a, l
-	ret
+	; fallthrough
 
 SortUsedSprites:
 ; Bubble-sort sprites by type.
@@ -437,7 +340,6 @@ SortUsedSprites:
 	jr nz, .CheckSprite
 
 .quit
-	ret
 
 ArrangeUsedSprites:
 ; Get the length of each sprite and space them out in VRAM.
@@ -495,29 +397,10 @@ ArrangeUsedSprites:
 	jr nz, .SecondTableLength
 
 .quit
-	ret
 
-GetSpriteLength:
-; Return the length of sprite type a in tiles.
-
-	cp WALKING_SPRITE
-	jr z, .AnyDirection
-	cp STANDING_SPRITE
-	jr z, .AnyDirection
-	cp STILL_SPRITE
-	jr z, .OneDirection
-
-	ld a, 12
-	ret
-
-.AnyDirection:
-	ld a, 12
-	ret
-
-.OneDirection:
-	ld a, 4
-	ret
-
+LoadUsedSpritesGFX:
+	ld a, MAPCALLBACK_SPRITES
+	call RunMapCallback
 GetUsedSprites:
 	ld hl, wUsedSprites
 	ld c, SPRITE_GFX_LIST_CAPACITY
@@ -552,11 +435,51 @@ GetUsedSprites:
 	jr nz, .loop
 
 .done
+LoadMiscTiles:
+	ld a, [wSpriteFlags]
+	bit SPRITES_SKIP_WALKING_GFX_F, a
+	ret nz
+
+	ld c, EMOTE_SHADOW
+	call .outdoor
+	call GetMapEnvironment
+	call CheckOutdoorMap
+	ld c, EMOTE_GRASS_RUSTLE
+	jr z, .outdoor
+	ld c, EMOTE_BOULDER_DUST
+.outdoor
+	farcall LoadEmote
 	ret
 
+GetSpriteLength:
+; Return the length of sprite type a in tiles.
+
+	cp WALKING_SPRITE
+	jr z, .AnyDirection
+	cp STANDING_SPRITE
+	jr z, .AnyDirection
+	cp STILL_SPRITE
+	jr z, .OneDirection
+
+.AnyDirection:
+	ld a, 12
+	ret
+
+.OneDirection:
+	ld a, 4
+	ret
+
+_UpdatePlayerSprite::
+	call GetPlayerSprite
+	ld a, [wUsedSprites]
+	ldh [hUsedSpriteIndex], a
+	ld a, [wUsedSprites + 1]
+	ldh [hUsedSpriteTile], a
 GetUsedSprite:
 	ldh a, [hUsedSpriteIndex]
-	call SafeGetSprite
+	push hl
+	call GetSprite
+	pop hl
 	ldh a, [hUsedSpriteTile]
 	call .GetTileAddr
 	push hl
@@ -582,20 +505,31 @@ endr
 
 	ld a, [wSpriteFlags]
 	bit SPRITES_VRAM_BANK_0_F, a
-	jr nz, .done
+	ret nz
 	bit SPRITES_SKIP_WALKING_GFX_F, a
-	jr nz, .done
+	ret nz
 
 	ldh a, [hUsedSpriteIndex]
 	call _DoesSpriteHaveFacings
-	jr c, .done
+	ret c
 
 	ld a, h
 	add HIGH(vTiles1 - vTiles0)
 	ld h, a
-	call .CopyToVram
+.CopyToVram:
+	ldh a, [rVBK]
+	push af
+	ld a, [wSpriteFlags]
+	bit SPRITES_VRAM_BANK_0_F, a
+	ld a, $1
+	jr z, .bankswitch
+	xor a
 
-.done
+.bankswitch
+	ldh [rVBK], a
+	call Get2bpp
+	pop af
+	ldh [rVBK], a
 	ret
 
 .GetTileAddr:
@@ -612,22 +546,6 @@ endr
 	ld a, h
 	adc HIGH(vTiles0)
 	ld h, a
-	ret
-
-.CopyToVram:
-	ldh a, [rVBK]
-	push af
-	ld a, [wSpriteFlags]
-	bit SPRITES_VRAM_BANK_0_F, a
-	ld a, $1
-	jr z, .bankswitch
-	ld a, $0
-
-.bankswitch
-	ldh [rVBK], a
-	call Get2bpp
-	pop af
-	ldh [rVBK], a
 	ret
 
 LoadEmote::
@@ -656,7 +574,12 @@ LoadEmote::
 	ld a, c
 	and a
 	ret z
-	call GetEmote2bpp
+GetEmote2bpp:
+	ld a, $1
+	ldh [rVBK], a
+	call Get2bpp
+	xor a
+	ldh [rVBK], a
 	ret
 
 INCLUDE "data/sprites/emotes.asm"
