@@ -853,7 +853,8 @@ ShrinkPlayer:
 
 	call RotateThreePalettesRight
 	call ClearTilemap
-	ret
+	; fallthrough
+INCLUDE "engine/events/init_events.asm"
 
 Intro_RotatePalettesLeftFrontpic:
 	ld hl, IntroFadePalettes
