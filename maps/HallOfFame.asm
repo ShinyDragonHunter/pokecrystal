@@ -30,13 +30,16 @@ HallOfFameEnterScript:
 	pause 15
 	setval HEALMACHINE_HALL_OF_FAME
 	special HealMachineAnim
+	checkevent EVENT_BEAT_ELITE_FOUR
+	iftrue .SkipToHeal ; Subsequent visits don't change flags & Sprout Tower scene
 	setevent EVENT_BEAT_ELITE_FOUR
 	setevent EVENT_TELEPORT_GUY
 	setevent EVENT_RIVAL_SPROUT_TOWER
-	clearevent EVENT_RED_IN_MT_SILVER
 	setevent EVENT_OLIVINE_PORT_SPRITES_BEFORE_HALL_OF_FAME
 	clearevent EVENT_OLIVINE_PORT_SPRITES_AFTER_HALL_OF_FAME
 	setmapscene SPROUT_TOWER_3F, SCENE_SPROUTTOWER3F_NOOP
+.SkipToHeal:
+	clearevent EVENT_RED_IN_MT_SILVER ; Red can be refought so needs to be cleared on each visit
 	special HealParty
 	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue .SkipPhoneCall
