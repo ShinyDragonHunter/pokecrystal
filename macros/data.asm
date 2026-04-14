@@ -91,16 +91,15 @@ MACRO? dab ; dwb address, bank
 ENDM
 
 MACRO? dba_pic ; dbw bank, address
-	db BANK(\1) - PICS_FIX
-	dw \1
+	dba \1
 ENDM
 
-MACRO? dba_pics ; front, back
+MACRO? dba_pics ; dbw bank, address (front, back)
 	if _NARG == 2
-		dba_pic \1 ; front
-		dba_pic \2 ; back
+		dba \1 ; front
+		dba \2 ; back
 	elif _NARG == 1
-		dba_pic \1 ; front
+		dba \1 ; front
 		dbw -1, -1 ; unused
 	else
 		dbw -1, -1 ; unused
