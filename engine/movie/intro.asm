@@ -22,7 +22,7 @@ CrystalIntro:
 	jp .loop
 
 .ShutOffMusic
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 
 .done
@@ -671,7 +671,7 @@ IntroScene13:
 	depixel 13, 11, 4, 0
 	ld a, SPRITE_ANIM_OBJ_INTRO_SUICUNE
 	call InitSpriteAnimStruct
-	ld de, MUSIC_CRYSTAL_OPENING
+	ld e, MUSIC_CRYSTAL_OPENING
 	call PlayMusic
 	xor a
 	ld [wGlobalAnimXOffset], a

@@ -62,7 +62,8 @@ _LoadMusicByte::
 	ret
 
 PlayMusic::
-; Play music de.
+	ld d, 0
+; Play music e.
 
 	push hl
 	push de
@@ -96,7 +97,8 @@ PlayMusic::
 	ret
 
 PlayMusic2::
-; Stop playing music, then play music de.
+	ld d, 0
+; Stop playing music, then play music e.
 
 	push hl
 	push de
@@ -110,7 +112,7 @@ PlayMusic2::
 	ld [rROMB], a
 
 	push de
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call _PlayMusic
 	call DelayFrame
 	pop de
@@ -320,7 +322,7 @@ FadeToMapMusic::
 	ld [wMusicFade], a
 	ld a, e
 	ld [wMusicFadeID], a
-	ld a, d
+	xor a ; music hi byte is always 0
 	ld [wMusicFadeID + 1], a
 	ld a, e
 	ld [wMapMusic], a
@@ -344,7 +346,7 @@ PlayMapMusic::
 	jr z, .done
 
 	push de
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	pop de
@@ -368,14 +370,14 @@ PlayMapMusicBike::
 
 	xor a
 	ld [wDontPlayMapMusicOnReload], a
-	ld de, MUSIC_BICYCLE
+	ld e, MUSIC_BICYCLE
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	jr z, .play
 	call GetMapMusic_MaybeSpecial
 .play
 	push de
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	pop de
@@ -396,7 +398,7 @@ TryRestartMapMusic::
 	jr z, RestartMapMusic
 	xor a
 	ld [wMapMusic], a
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	xor a
@@ -408,12 +410,11 @@ RestartMapMusic::
 	push de
 	push bc
 	push af
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	ld a, [wMapMusic]
 	ld e, a
-	ld d, 0
 	call PlayMusic
 	pop af
 	pop bc
@@ -437,12 +438,12 @@ SpecialMapMusic::
 	ret
 
 .bike ; unreferenced
-	ld de, MUSIC_BICYCLE
+	ld e, MUSIC_BICYCLE
 	scf
 	ret
 
 .surf
-	ld de, MUSIC_SURF
+	ld e, MUSIC_SURF
 	scf
 	ret
 
@@ -457,7 +458,7 @@ SpecialMapMusic::
 	jr nz, .no
 
 .ranking
-	ld de, MUSIC_BUG_CATCHING_CONTEST_RANKING
+	ld e, MUSIC_BUG_CATCHING_CONTEST_RANKING
 	scf
 	ret
 

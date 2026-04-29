@@ -601,7 +601,7 @@ OaksPKMNTalk14:
 	ld hl, wRadioTextDelay
 	dec [hl]
 	ret nz
-	ld de, MUSIC_POKEMON_TALK
+	ld e, MUSIC_POKEMON_TALK
 	callfar RadioMusicRestartDE
 	ld hl, .terminator
 	call PrintText
@@ -849,11 +849,11 @@ BenFernMusic7:
 StartPokemonMusicChannel:
 	call RadioTerminator
 	call PrintText
-	ld de, MUSIC_POKEMON_MARCH
+	ld e, MUSIC_POKEMON_MARCH
 	call GetWeekday
 	and 1
 	jr z, .SunTueThurSun
-	ld de, MUSIC_POKEMON_LULLABY
+	ld e, MUSIC_POKEMON_LULLABY
 .SunTueThurSun:
 	callfar RadioMusicRestartDE
 	ret

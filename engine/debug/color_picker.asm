@@ -53,7 +53,7 @@ DebugColorPicker: ; unreferenced
 	call DebugColor_InitPalettes
 	call DebugColor_InitMonOrTrainerColor
 	call EnableLCD
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 
 	xor a ; DEBUGCOLORMAIN_INITSCREEN

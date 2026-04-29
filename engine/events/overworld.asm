@@ -1640,11 +1640,11 @@ BikeFunction:
 	call QueueScript
 	xor a
 	ld [wMusicFade], a
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	call MaxVolume
-	ld de, MUSIC_BICYCLE
+	ld e, MUSIC_BICYCLE
 	ld a, e
 	ld [wMapMusic], a
 	call PlayMusic

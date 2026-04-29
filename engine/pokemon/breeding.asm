@@ -678,7 +678,7 @@ EggHatch_AnimationSequence:
 	ld [wJumptableIndex], a
 	ld a, [wCurSpecies]
 	push af
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	farcall BlankScreen
 	call DisableLCD
@@ -694,7 +694,7 @@ EggHatch_AnimationSequence:
 	ld de, vTiles2 tile $31
 	ld a, EGG
 	call GetEggFrontpic
-	ld de, MUSIC_EVOLUTION
+	ld e, MUSIC_EVOLUTION
 	call PlayMusic
 	call EnableLCD
 	hlcoord 7, 4

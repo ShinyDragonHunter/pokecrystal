@@ -104,7 +104,7 @@ _SlotMachine:
 	call ClearBGPalettes
 	call ClearTilemap
 	call ClearSprites
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	call DisableLCD
@@ -158,7 +158,7 @@ _SlotMachine:
 	ld [wJumptableIndex], a
 	ld a, SLOTS_NO_BIAS
 	ld [wSlotBias], a
-	ld de, MUSIC_GAME_CORNER
+	ld e, MUSIC_GAME_CORNER
 	call PlayMusic
 	xor a
 	ld [wKeepSevenBiasChance], a ; 87.5% chance

@@ -742,15 +742,13 @@ Script_playmapmusic:
 	ret
 
 Script_playmusic:
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	xor a
 	ld [wMusicFade], a
 	call MaxVolume
 	call GetScriptByte
 	ld e, a
-	call GetScriptByte
-	ld d, a
 	call PlayMusic
 	ret
 
@@ -767,8 +765,7 @@ Script_musicfadeout:
 Script_playsound:
 	call GetScriptByte
 	ld e, a
-	call GetScriptByte
-	ld d, a
+	ld d, 0
 	call PlaySFX
 	ret
 

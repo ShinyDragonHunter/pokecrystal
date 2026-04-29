@@ -2,6 +2,9 @@ DEF HALLOFFAME_COLON EQU $63
 
 HallOfFame::
 	call HallOfFame_FadeOutMusic
+	farcall InitDisplayForHallOfFame
+	ld c, 100
+	call DelayFrames
 	ld a, [wStatusFlags]
 	push af
 	ld a, 1
@@ -35,16 +38,7 @@ HallOfFame::
 	ret
 
 RedCredits::
-	ld a, LOW(MUSIC_NONE)
-	ld [wMusicFadeID], a
-	ld a, HIGH(MUSIC_NONE)
-	ld [wMusicFadeID + 1], a
-	ld a, 10
-	ld [wMusicFade], a
-	farcall FadeOutToWhite
-	xor a
-	ld [wStateFlags], a
-	ldh [hMapAnims], a
+	call HallOfFame_FadeOutMusic
 	farcall InitDisplayForRedCredits
 	ld c, 8
 	call DelayFrames
@@ -57,9 +51,8 @@ RedCredits::
 	ret
 
 HallOfFame_FadeOutMusic:
-	ld a, LOW(MUSIC_NONE)
+	xor a ; MUSIC_NONE
 	ld [wMusicFadeID], a
-	ld a, HIGH(MUSIC_NONE)
 	ld [wMusicFadeID + 1], a
 	ld a, 10
 	ld [wMusicFade], a
@@ -67,17 +60,6 @@ HallOfFame_FadeOutMusic:
 	xor a
 	ld [wStateFlags], a
 	ldh [hMapAnims], a
-	farcall InitDisplayForHallOfFame
-	ld c, 100
-	jp DelayFrames
-
-HallOfFame_PlayMusicDE:
-	push de
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	pop de
-	call PlayMusic
 	ret
 
 AnimateHallOfFame:
@@ -85,8 +67,11 @@ AnimateHallOfFame:
 	ld [wJumptableIndex], a
 	call LoadHOFTeam
 	jr c, .done
-	ld de, MUSIC_HALL_OF_FAME
-	call HallOfFame_PlayMusicDE
+	ld e, MUSIC_NONE
+	call PlayMusic
+	call DelayFrame
+	ld e, MUSIC_HALL_OF_FAME
+	call PlayMusic
 	xor a
 	ld [wHallOfFameMonCounter], a
 .loop

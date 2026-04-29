@@ -140,7 +140,7 @@ RunTradeAnimScript:
 	ld a, [wUnusedTradeAnimPlayEvolutionMusic]
 	and a
 	jr nz, .anim_loop
-	ld de, MUSIC_EVOLUTION
+	ld e, MUSIC_EVOLUTION
 	call PlayMusic2
 .anim_loop
 	call DoTradeAnimation

@@ -91,7 +91,7 @@ UnusedTitleScreen: ; unreferenced
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 
-	ld de, MUSIC_TITLE
+	ld e, MUSIC_TITLE
 	call PlayMusic
 
 	ret

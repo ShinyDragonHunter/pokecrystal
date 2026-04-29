@@ -3,7 +3,7 @@ GBCOnlyScreen:
 	and a
 	ret nz
 
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 
 	call ClearTilemap

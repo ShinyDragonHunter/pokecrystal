@@ -1073,10 +1073,10 @@ Text_GotchaMonWasCaught:
 	text_asm
 	call WaitSFX
 	push bc
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
-	ld de, MUSIC_CAPTURE
+	ld e, MUSIC_CAPTURE
 	call PlayMusic
 	pop bc
 	ld hl, WaitButtonText

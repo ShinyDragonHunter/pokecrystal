@@ -65,7 +65,7 @@ Gen2ToGen1LinkComms:
 	ldh [rSC], a
 
 .player_1
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	vc_patch Wireless_net_delay_5
 if DEF(_CRYSTAL11_VC)
@@ -186,13 +186,13 @@ endc
 	ld hl, wTimeCapsulePlayerData
 	call Link_ConvertPartyStruct1to2
 
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ld c, 66
 	call z, DelayFrames
-	ld de, MUSIC_ROUTE_30
+	ld e, MUSIC_ROUTE_30
 	call PlayMusic
 	jp InitTradeMenuDisplay
 
@@ -226,7 +226,7 @@ Gen2ToGen2LinkComms:
 	ldh [rSC], a
 
 .player_1
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	vc_patch Wireless_net_delay_8
 if DEF(_CRYSTAL11_VC)
@@ -277,7 +277,7 @@ endc
 	ldh [rIF], a
 	ld a, IE_JOYPAD | IE_SERIAL | IE_TIMER | IE_VBLANK
 	ldh [rIE], a
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 
 	call Link_CopyRandomNumbers
@@ -451,7 +451,7 @@ endc
 	ld bc, wOTPartyDataEnd - wOTPartyMons
 	call CopyBytes
 
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
@@ -512,7 +512,7 @@ endc
 	jp ExitLinkCommunications
 
 .ready_to_trade
-	ld de, MUSIC_ROUTE_30
+	ld e, MUSIC_ROUTE_30
 	call PlayMusic
 	jp InitTradeMenuDisplay
 
