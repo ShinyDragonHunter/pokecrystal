@@ -250,8 +250,6 @@ RefreshSprites::
 	call GetPlayerSprite
 	call AddMapSprites
 LoadSpriteGFX:
-; BUG: LoadSpriteGFX does not limit the capacity of UsedSprites (see docs/bugs_and_glitches.md)
-
 	ld hl, wUsedSprites
 	ld b, SPRITE_GFX_LIST_CAPACITY
 .loop
@@ -259,7 +257,9 @@ LoadSpriteGFX:
 	and a
 	jr z, .done
 	push hl
+	push bc
 	call GetSprite
+	pop bc
 	ld a, l
 	pop hl
 	ld [hli], a
