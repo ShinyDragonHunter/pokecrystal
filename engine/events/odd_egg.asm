@@ -38,13 +38,12 @@ _GiveOddEgg:
 .done
 
 	ld hl, OddEggs
-	ld a, NICKNAMED_MON_STRUCT_LENGTH
+	ld a, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 
-	; Writes to wOddEgg, wOddEggName, and wOddEggOT,
-	; even though OddEggs does not have data for wOddEggOT
+	; Writes to wOddEgg
 	ld de, wOddEgg
-	ld bc, NICKNAMED_MON_STRUCT_LENGTH + NAME_LENGTH
+	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 
 	ld a, EGG_TICKET
@@ -59,6 +58,13 @@ _GiveOddEgg:
 	; load species in wMobileMonSpecies
 	ld a, EGG
 	ld [wMobileMonMiscSpecies], a
+	; Use species name set to "EGG"
+	ld [wNamedObjectIndex], a
+	call GetPokemonName
+	ld hl, wStringBuffer1
+	ld de, wOddEggName
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
 
 	; load pointer to (wMobileMonSpecies - 1) in wMobileMonSpeciesPointer
 	ld a, LOW(wMobileMonMiscSpecies - 1)

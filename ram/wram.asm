@@ -649,7 +649,7 @@ NEXTU
 ; odd egg
 wOddEgg:: party_struct wOddEgg
 wOddEggName:: ds MON_NAME_LENGTH
-wOddEggOT:: ds NAME_LENGTH
+	ds 11
 
 NEXTU
 ; debug mon color picker
