@@ -429,7 +429,7 @@ GruntM3SeenText:
 	line "get to experience"
 
 	para "the true terror of"
-	line "TEAM ROCKET!"
+	line "TEAM <ROCKET>!"
 
 	para "We'll show you"
 	line "how scary we are!"

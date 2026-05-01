@@ -134,7 +134,7 @@ MagazineBookshelfText:
 	done
 
 TeamRocketOathText:
-	text "TEAM ROCKET OATH"
+	text "TEAM <ROCKET> OATH"
 
 	para "Steal #MON for"
 	line "profit!"
@@ -144,7 +144,7 @@ TeamRocketOathText:
 
 	para "All #MON exist"
 	line "for the glory of"
-	cont "TEAM ROCKET!"
+	cont "TEAM <ROCKET>!"
 	done
 
 IncenseBurnerText:

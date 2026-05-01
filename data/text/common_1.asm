@@ -961,7 +961,7 @@ _RocketRadioText1::
 
 _RocketRadioText2::
 	text_start
-	line "TEAM ROCKET!"
+	line "TEAM <ROCKET>!"
 	done
 
 _RocketRadioText3::

@@ -301,7 +301,7 @@ GoldenrodCityCooltrainerF1Text:
 	text "Is that man in"
 	line "black dressed up"
 
-	para "like a TEAM ROCKET"
+	para "like a TEAM <ROCKET>"
 	line "member? How silly!"
 	done
 
@@ -309,7 +309,7 @@ GoldenrodCityCooltrainerF1Text_ClearedRadioTower:
 	text "Was that man in"
 	line "black really part"
 
-	para "of TEAM ROCKET? I"
+	para "of TEAM <ROCKET>? I"
 	line "can't believe it!"
 	done
 
@@ -409,7 +409,7 @@ GoldenrodCityRocket5Text:
 GoldenrodCityRocket6Text:
 	text "Come taste the"
 	line "true terror of"
-	cont "TEAM ROCKET!"
+	cont "TEAM <ROCKET>!"
 	done
 
 GoldenrodCityStationSignText:

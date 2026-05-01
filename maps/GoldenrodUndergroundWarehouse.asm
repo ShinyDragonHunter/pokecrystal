@@ -109,7 +109,7 @@ GruntM24BeatenText:
 	done
 
 GruntM24AfterBattleText:
-	text "TEAM ROCKET will"
+	text "TEAM <ROCKET> will"
 	line "keep going, wait-"
 	cont "ing for the return"
 	cont "of GIOVANNI."
@@ -170,7 +170,7 @@ DirectorIntroText:
 	line "there?"
 
 	para "Taken over by TEAM"
-	line "ROCKET?"
+	line "<ROCKET>?"
 
 	para "Here. Take this"
 	line "CARD KEY."

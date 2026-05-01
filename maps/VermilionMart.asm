@@ -21,7 +21,7 @@ VermilionMartBeautyScript:
 	jumptextfaceplayer VermilionMartBeautyText
 
 VermilionMartSuperNerdText:
-	text "TEAM ROCKET is no"
+	text "TEAM <ROCKET> is no"
 	line "longer in KANTO."
 
 	para "That alone makes"

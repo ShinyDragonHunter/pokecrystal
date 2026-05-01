@@ -533,7 +533,7 @@ UndergroundRivalBeforeText:
 	line "underfoot while I"
 
 	para "take care of TEAM"
-	line "ROCKET."
+	line "<ROCKET>."
 
 	para "…Wait a second."
 	line "You beat me be-"
@@ -600,7 +600,7 @@ UndergroundRivalLossText:
 	line "real power, wimp."
 
 	para "I'll make TEAM"
-	line "ROCKET history."
+	line "<ROCKET> history."
 
 	para "And I'm going to"
 	line "grind that LANCE"
@@ -732,7 +732,7 @@ GruntM13BeatenText:
 GruntM13AfterBattleText:
 	text "You must have ice"
 	line "in your veins to"
-	cont "dis TEAM ROCKET."
+	cont "dis TEAM <ROCKET>."
 	done
 
 SwitchRoomText_Switch1:

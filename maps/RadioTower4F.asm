@@ -168,7 +168,7 @@ GruntM10AfterBattleText:
 
 Executivem2SeenText:
 	text "Stop! I'm known as"
-	line "the TEAM ROCKET"
+	line "the TEAM <ROCKET>"
 	cont "fortress!"
 
 	para "You're not taking"
@@ -232,7 +232,7 @@ ScientistRichBeatenText:
 ScientistRichAfterBattleText:
 	text "Do you honestly"
 	line "believe you can"
-	cont "stop TEAM ROCKET?"
+	cont "stop TEAM <ROCKET>?"
 	done
 
 RadioTower4FProductionSignText:

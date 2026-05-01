@@ -248,7 +248,7 @@ AzaleaTownRivalBeforeText:
 	line "thing."
 
 	para "Is it true that"
-	line "TEAM ROCKET has"
+	line "TEAM <ROCKET> has"
 	cont "returned?"
 
 	para "What? You beat"
@@ -283,7 +283,7 @@ AzaleaTownRivalAfterText:
 	cont "out the weak."
 
 	para "That goes for TEAM"
-	line "ROCKET too."
+	line "<ROCKET> too."
 
 	para "They act big and"
 	line "tough in a group."

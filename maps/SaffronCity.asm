@@ -167,7 +167,7 @@ SaffronCityCooltrainerFText:
 	cont "merchandise."
 
 	para "In the past, TEAM"
-	line "ROCKET wanted the"
+	line "<ROCKET> wanted the"
 
 	para "company because of"
 	line "that."

@@ -568,7 +568,7 @@ RocketBaseBossFThrashText:
 	cont "the loose."
 
 	para "It's harmful to"
-	line "TEAM ROCKET's"
+	line "TEAM <ROCKET>'s"
 	cont "pride, you see."
 
 	para "However strong you"
@@ -602,7 +602,7 @@ RocketBaseBossDontMeddleText:
 	line "show you how wrong"
 
 	para "it is to meddle"
-	line "with TEAM ROCKET!"
+	line "with TEAM <ROCKET>!"
 	done
 
 RocketBaseBossWinText:
@@ -612,7 +612,7 @@ RocketBaseBossWinText:
 	para "It's too bad."
 
 	para "If you were to"
-	line "join TEAM ROCKET,"
+	line "join TEAM <ROCKET>,"
 
 	para "you could become"
 	line "an EXECUTIVE."
@@ -637,7 +637,7 @@ RocketBaseBossRetreatText:
 	para "You'll come to"
 	line "appreciate TEAM"
 
-	para "ROCKET's true"
+	para "<ROCKET>'s true"
 	line "power soon enough."
 
 	para "Enjoy yourself"
@@ -650,7 +650,7 @@ RocketBaseLancePostBattleText:
 	text "LANCE: That did"
 	line "it. We defeated"
 
-	para "all the ROCKETS"
+	para "all the <ROCKET>S"
 	line "here."
 
 	para "But I'm concerned"
@@ -809,7 +809,7 @@ GruntM17SeenText:
 	line "It has to have a"
 
 	para "password that only"
-	line "TEAM ROCKET knows."
+	line "TEAM <ROCKET> knows."
 	done
 
 GruntM17BeatenText:

@@ -175,7 +175,7 @@ KurtLeaveSlowpokeWellText:
 	text "KURT: Way to go,"
 	line "<PLAYER>!"
 
-	para "TEAM ROCKET has"
+	para "TEAM <ROCKET> has"
 	line "taken off."
 
 	para "My back's better"
@@ -215,7 +215,7 @@ GruntM29AfterBattleText:
 	line "is for profit."
 
 	para "That's right!"
-	line "We're TEAM ROCKET,"
+	line "We're TEAM <ROCKET>,"
 
 	para "and we'll do any-"
 	line "thing for money!"
@@ -236,7 +236,7 @@ GruntM1BeatenText:
 	done
 
 TrainerGruntM1WhenTalkText:
-	text "Yeah, TEAM ROCKET"
+	text "Yeah, TEAM <ROCKET>"
 	line "was broken up"
 	cont "three years ago."
 
@@ -254,7 +254,7 @@ GruntM2SeenText:
 	line "POKETAILS?"
 
 	para "If we obeyed you,"
-	line "TEAM ROCKET's rep"
+	line "TEAM <ROCKET>'s rep"
 	cont "would be ruined!"
 	done
 
@@ -269,7 +269,7 @@ GruntM2AfterBattleText:
 	cont "POKETAILS?"
 
 	para "It's tough being a"
-	line "ROCKET GRUNT!"
+	line "<ROCKET> GRUNT!"
 	done
 
 GruntF1SeenText:

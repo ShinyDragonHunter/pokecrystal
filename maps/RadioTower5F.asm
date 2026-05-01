@@ -261,7 +261,7 @@ Executivef1AfterBattleText:
 	line "won't appreciate"
 
 	para "the magnificence"
-	line "of TEAM ROCKET."
+	line "of TEAM <ROCKET>."
 
 	para "That's too bad."
 	line "I really admire"
@@ -315,7 +315,7 @@ RadioTower5FRocketBossAfterText:
 	line "before me, I will"
 
 	para "disband TEAM"
-	line "ROCKET here today."
+	line "<ROCKET> here today."
 
 	para "Farewell."
 	done
@@ -370,7 +370,7 @@ RadioTower5FDirectorDescribeClearBellText:
 	para "That reminds me…"
 
 	para "I overheard TEAM"
-	line "ROCKET whispering."
+	line "<ROCKET> whispering."
 
 	para "Apparently, some-"
 	line "thing is going on"

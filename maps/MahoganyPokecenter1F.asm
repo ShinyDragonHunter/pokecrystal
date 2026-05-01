@@ -23,7 +23,7 @@ MahoganyPokecenter1FCooltrainerFScript:
 
 MahoganyPokecenter1FPokefanMText:
 	text "What's this? TEAM"
-	line "ROCKET has come"
+	line "<ROCKET> has come"
 	cont "back?"
 
 	para "I saw some men in"
