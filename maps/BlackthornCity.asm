@@ -300,7 +300,7 @@ DragonDensSignText:
 	done
 
 BlackthornCityTrainerTipsText:
-	text "TRAINER TIPS"
+	text "<TRAINER> TIPS"
 
 	para "A #MON holding"
 	line "a MIRACLEBERRY"

@@ -207,7 +207,7 @@ ViridianCityWelcomeSignText:
 	done
 
 TrainerHouseSignText:
-	text "TRAINER HOUSE"
+	text "<TRAINER> HOUSE"
 
 	para "The Club for Top"
 	line "Trainer Battles"

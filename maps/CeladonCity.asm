@@ -230,7 +230,7 @@ else
 endc
 
 CeladonCityTrainerTipsText:
-	text "TRAINER TIPS"
+	text "<TRAINER> TIPS"
 
 	para "GUARD SPEC."
 	line "protects #MON"

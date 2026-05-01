@@ -379,7 +379,7 @@ MrPokemonsHouseSignText:
 	done
 
 Route30TrainerTipsText:
-	text "TRAINER TIPS"
+	text "<TRAINER> TIPS"
 
 	para "No stealing other"
 	line "people's #MON!"

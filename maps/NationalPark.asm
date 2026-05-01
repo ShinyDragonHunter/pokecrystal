@@ -504,7 +504,7 @@ NationalParkBattleNoticeText:
 	done
 
 NationalParkTrainerTipsText:
-	text "TRAINER TIPS"
+	text "<TRAINER> TIPS"
 
 	para "Print out MAIL by"
 	line "opening it then"

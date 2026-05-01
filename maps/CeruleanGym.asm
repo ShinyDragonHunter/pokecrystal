@@ -235,7 +235,7 @@ CeruleanGymNote1Text:
 CeruleanGymNote2Text:
 	text "Since MISTY's out,"
 	line "we'll be away too."
-	cont "GYM TRAINERS"
+	cont "GYM <TRAINER>S"
 	done
 
 MistyIntroText:

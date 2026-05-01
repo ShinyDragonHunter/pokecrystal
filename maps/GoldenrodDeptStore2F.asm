@@ -92,7 +92,7 @@ GoldenrodDeptStore2FDirectoryText:
 	text "Your Travel"
 	line "Companion"
 
-	para "2F TRAINER'S"
+	para "2F <TRAINER>'S"
 	line "   MARKET"
 	done
 

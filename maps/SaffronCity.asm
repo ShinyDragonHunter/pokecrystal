@@ -204,7 +204,7 @@ SaffronCityYoungster1Text:
 
 SaffronCityYoungster2Text:
 	text "There's a place"
-	line "called TRAINER"
+	line "called <TRAINER>"
 
 	para "HOUSE in VIRIDIAN"
 	line "where trainers"

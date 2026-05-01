@@ -35,7 +35,7 @@ TrainerHouseIllegibleBook:
 	jumptext TrainerHouseIllegibleText
 
 TrainerHouse1FReceptionistText:
-	text "Welcome to TRAINER"
+	text "Welcome to <TRAINER>"
 	line "HOUSE, the newest"
 
 	para "and most happening"

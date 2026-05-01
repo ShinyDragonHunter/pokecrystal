@@ -455,7 +455,7 @@ Route38SignText:
 	done
 
 Route38TrainerTipsText:
-	text "TRAINER TIPS"
+	text "<TRAINER> TIPS"
 
 	para "If a #MON is"
 	line "trying to evolve,"

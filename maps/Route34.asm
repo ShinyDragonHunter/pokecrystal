@@ -740,7 +740,7 @@ Route34SignText:
 	done
 
 Route34TrainerTipsText:
-	text "TRAINER TIPS"
+	text "<TRAINER> TIPS"
 
 	para "BERRY trees grow"
 	line "new BERRIES"
