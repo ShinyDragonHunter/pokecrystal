@@ -810,7 +810,6 @@ ENDM
 MACRO playmusic
 	db playmusic_command
 	db \1 ; music_id
-	endc
 ENDM
 
 	const encountermusic_command ; $80
