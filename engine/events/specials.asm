@@ -415,10 +415,3 @@ PrintDiploma:
 	farcall _PrintDiploma
 	call ExitAllMenus
 	ret
-
-TrainerHouse:
-	ld a, BANK(sMysteryGiftTrainerHouseFlag)
-	call OpenSRAM
-	ld a, [sMysteryGiftTrainerHouseFlag]
-	ld [wScriptVar], a
-	jp CloseSRAM
